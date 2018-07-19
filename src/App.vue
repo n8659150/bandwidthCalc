@@ -1,9 +1,11 @@
 <template>
   <div id="app">
     <ribbon :profile="profile"></ribbon>
-    <img src="./assets/inspector.jpg">
-    <bandWidthCalc />
-    <footer><a href="//www.jackyangli.com">2018  Jack Li©</a></footer>
+    <div>
+      <img src="./assets/inspector.jpg" width="300" height="300">
+      <bandWidthCalc />
+    </div>
+    <!-- <footer><a href="//www.jackyangli.com">2018  Jack Li©</a></footer> -->
   </div>
 </template>
 
@@ -28,6 +30,9 @@ export default {
 <style>
 html,body {
   margin:0;
+  height:100%;
+  display:flex;
+  flex:1;
 }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -35,16 +40,10 @@ html,body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  display:flex;
+  flex:1;
+  justify-content: center;
+  align-items:center;
   /* margin-top: 60px; */
-}
-footer {
-  position:absolute;
-  bottom:3px;
-  width:100vw;
-}
-footer a {
-  font-size:14px;
-  color:#2c3e50;
-  text-decoration: none;
 }
 </style>
