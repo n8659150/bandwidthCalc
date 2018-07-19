@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div>
     <h1>{{ msg }}</h1>
   </div>
 </template>
@@ -14,7 +14,8 @@ export default {
       startTime: null,
       endTime: null,
       fileSize: 0,
-      result: null
+      result: null,
+      imgSrc:'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Templo_de_Garni%2C_Armenia%2C_2016-10-02%2C_DD_03.jpg/1920px-Templo_de_Garni%2C_Armenia%2C_2016-10-02%2C_DD_03.jpg?v='
     };
   },
   methods: {
@@ -28,7 +29,7 @@ export default {
       let xhr = new XMLHttpRequest();
       xhr.onreadystatechange = () => {
         if (xhr.readyState === 4 && xhr.status === 0) {
-          this.msg = '无法检测您的带宽，请检查网络连接是否畅通';
+          this.msg = '无法检测您的下载速度，请检查网络连接是否畅通';
         }
 
         if (xhr.readyState === 4 && xhr.status === 200) {
@@ -50,13 +51,15 @@ export default {
                 ? Math.floor(speed) / 1000 + "MB/s"
                 : Math.floor(speed) + "KB/s";
 
-            this.msg = `您的带宽约等于 ${this.result}`;
+            this.msg = `您的下载速度约等于 ${this.result}`;
           }
         } 
       };
+      // 解决浏览器缓存图片的问题
+      this.imgSrc = `${this.imgSrc}${Math.random().toString().slice(-6)}`;
       xhr.open(
         "GET",
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Templo_de_Garni%2C_Armenia%2C_2016-10-02%2C_DD_03.jpg/1920px-Templo_de_Garni%2C_Armenia%2C_2016-10-02%2C_DD_03.jpg",
+        this.imgSrc,
         true
       );
       xhr.send();
@@ -70,19 +73,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1,
-h2 {
+h1{
   font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
 }
 </style>
